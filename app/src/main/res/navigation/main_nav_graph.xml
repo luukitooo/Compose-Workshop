@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_nav_graph"
+    app:startDestination="@id/charactersListFragment">
+    <fragment
+        android:id="@+id/charactersListFragment"
+        android:name="com.luukitoo.composeworkshop.features.characters_list.CharactersListFragment"
+        android:label="CharactersListFragment" >
+        <action
+            android:id="@+id/toCharacterDetailsFragment"
+            app:destination="@id/characterDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/characterDetailsFragment"
+        android:name="com.luukitoo.composeworkshop.features.character_details.CharacterDetailsFragment"
+        android:label="CharacterDetailsFragment" >
+        <argument
+            android:name="characterId"
+            app:argType="long" />
+    </fragment>
+</navigation>
