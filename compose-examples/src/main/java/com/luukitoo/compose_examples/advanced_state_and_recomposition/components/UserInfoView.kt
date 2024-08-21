@@ -4,6 +4,7 @@ import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -39,13 +40,10 @@ fun UserInfoView(
     username: String,
     email: String,
     initialColor: Color,
-    paddingStart: Dp = 15.dp,
-    paddingTop: Dp = 15.dp,
-    paddingEnd: Dp = 15.dp,
-    paddingBottom: Dp = 15.dp
+    paddingValues: PaddingValues = PaddingValues(15.dp)
 ) {
 
-    val colorHelper = ColorHelper()
+    val colorHelper = remember { ColorHelper() }
     var iconColor by remember { mutableStateOf(initialColor) }
     var isExpanded by remember { mutableStateOf(false) }
     val arrowRotation by animateFloatAsState(if (!isExpanded) 0f else 180f)
@@ -55,17 +53,12 @@ fun UserInfoView(
         onClick = {
             iconColor = colorHelper.randomColor()
             isExpanded = !isExpanded
-        }
+        },
     ) {
         Row(
             modifier = Modifier
-                .padding(
-                    start = paddingStart,
-                    top = paddingTop,
-                    end = paddingEnd,
-                    bottom = paddingBottom
-                )
-                .background(Color.Yellow),
+                .background(Color.Yellow)
+                .padding(paddingValues),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(18.dp)
         ) {

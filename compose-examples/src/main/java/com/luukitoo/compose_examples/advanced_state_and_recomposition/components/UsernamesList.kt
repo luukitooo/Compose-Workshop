@@ -39,19 +39,19 @@ fun UsersListView(
     LazyColumn(
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        items(users) { user ->
+        items(users, key = { it.id }) { user ->
             Text(
                 modifier = Modifier
                     .background(itemsBackgroundColor)
-                    .padding(20.dp)
-                    .clickable { onUserClicked.invoke(user) },
+                    .clickable { onUserClicked.invoke(user) }
+                    .padding(20.dp),
                 text = user.username
             )
         }
     }
 }
 
-class User(
+data class User(
     val id: String,
     val username: String
 )
